@@ -1,50 +1,42 @@
 package FileWriter;
+
 import java.io.*;
-import java.nio.file.*;
-import java.nio.charset.StandardCharsets;
 
 public class MyFileWriter {
-    public static void main(String[] args) {
-        String data = "Hello, World!";
-        String fileName1 = "example.txt";
-        String fileName2 = "example2.txt";
-        String fileName3 = "example3.txt";
-        String fileName4 = "example4.txt";
-        String fileName5 = "example5.txt";
 
-        // 1. Using FileWriter
-        try (FileWriter writer = new FileWriter(fileName1)) {
-            writer.write(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    /*
+     * The homework activity is incorrect - we were told to select *two* writers
+     * (one for text and one for non-text data) in the first homework assignment.
+     * With this in mind, I selected BufferedWriter and BufferedOutputStream. If the
+     * goal was to only use one class, then Files becomes the obvious choice as it
+     * encompasses both BufferedWriter and BufferedOutputStream. Moreover, the
+     * ability to create files is given to the Files object, so in that context
+     * Files becomes better. Regardless, I will use BufferedWriter for this exercise
+     * and only use Files to generate the new files.
+     */
 
-        // 2. Using BufferedWriter
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName2))) {
-            bufferedWriter.write(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws IOException {
+        generateHiddenPasswordFile("hello world");
+        generateConfidentialFile("no one will ever see this (except on GitHub)");
+    }
 
-        // 3. Using FileOutputStream
-        try (FileOutputStream outputStream = new FileOutputStream(fileName3)) {
-            outputStream.write(data.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void generateHiddenPasswordFile(String password) throws IOException {
 
-        // 4. Using BufferedOutputStream
-        try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(fileName4))) {
-            bufferedOutputStream.write(data.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        File passwordFile = new File(".secretpswd.txt");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(passwordFile));
 
-        // 5. Using Files (java.nio.file)
-        try {
-            Files.write(Paths.get(fileName5), data.getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        bw.write(password);
+        bw.close();
+
+    }
+
+    public static void generateConfidentialFile(String secrets) throws IOException {
+        
+        File hiddenFile = new File(".secretfolder/hiddenstuff.dat");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(hiddenFile));
+
+        bw.write(secrets);
+        bw.close();
+
     }
 }
