@@ -35,6 +35,10 @@ public class MyFileWriter {
     public static void generateConfidentialFile(String secrets) throws IOException {
         
         File hiddenFile = new File(".secretfolder/hiddenstuff.dat");
+        File regFolder = new File(".secretfolder");
+        if (!(regFolder.exists())) {
+            regFolder.mkdir();
+        }
         BufferedWriter bw = new BufferedWriter(new FileWriter(hiddenFile));
 
         bw.write(secrets);
