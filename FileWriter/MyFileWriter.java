@@ -18,8 +18,8 @@ public class MyFileWriter {
      */
 
     public static void main(String[] args) throws IOException {
-        generateHiddenPasswordFile("hello world");
         generateConfidentialFile("no one will ever see this (except on GitHub) I SAW IT - sohs");
+        generateHiddenPasswordFile("mwahahahahahah");
     }
 
     public static void generateHiddenPasswordFile(String password) throws IOException {
