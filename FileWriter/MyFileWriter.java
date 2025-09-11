@@ -13,11 +13,13 @@ public class MyFileWriter {
      * ability to create files is given to the Files object, so in that context
      * Files becomes better. Regardless, I will use BufferedWriter for this exercise
      * and only use Files to generate the new files.
+     * 
+     * AINT NOBODY ASK
      */
 
     public static void main(String[] args) throws IOException {
         generateHiddenPasswordFile("hello world");
-        generateConfidentialFile("no one will ever see this (except on GitHub)");
+        generateConfidentialFile("no one will ever see this (except on GitHub) I SAW IT - sohs");
     }
 
     public static void generateHiddenPasswordFile(String password) throws IOException {
